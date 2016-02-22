@@ -34,6 +34,8 @@ Berksfile.lock
 
 chef-zero-local/
 repo/data_bags/secrets/*.json
+repo/data_bags/secrets/*.pem
+repo/data_bags/secrets/*.pub
 .delivery/cli.toml
 
 .chef/*.pem
