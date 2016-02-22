@@ -1,3 +1,6 @@
+# use a variable to give the name of the centos box build
+vm_box="bento/centos-7.2"
+
 node.default['chef']['provisioning'].tap do |provisioning|
   provisioning['key-name'] = 'vagrant'
   provisioning['machine_options'] = {
@@ -21,7 +24,7 @@ node.default['chef']['provisioning'].tap do |provisioning|
         v.vmx["numvcpus"] = "2"
       end
 
-      config.vm.box = "opscode-centos-7.1"
+      config.vm.box = "#{vm_box}"
       config.vm.network "private_network", ip: "192.168.80.80"
     VC
   }
@@ -33,7 +36,7 @@ node.default['chef']['provisioning'].tap do |provisioning|
         v.vmx["numvcpus"] = "2"
       end
 
-      config.vm.box = "opscode-centos-7.1"
+      config.vm.box = "#{vm_box}"
       config.vm.network "private_network", ip: "192.168.80.81"
     VC
   }
@@ -45,7 +48,7 @@ node.default['chef']['provisioning'].tap do |provisioning|
         v.vmx["numvcpus"] = "2"
       end
 
-      config.vm.box = "opscode-centos-7.1"
+      config.vm.box = "#{vm_box}"
       config.vm.network "private_network", ip: "192.168.80.82"
     VC
   }
@@ -57,7 +60,7 @@ node.default['chef']['provisioning'].tap do |provisioning|
         v.vmx["numvcpus"] = "2"
       end
 
-      config.vm.box = "opscode-centos-7.1"
+      config.vm.box = "#{vm_box}"
       config.vm.network "private_network", ip: "192.168.80.83"
     VC
   }
