@@ -64,6 +64,18 @@ node.default['chef']['provisioning'].tap do |provisioning|
       config.vm.network "private_network", ip: "192.168.80.83"
     VC
   }
+
+  provisioning['compliance-options'] = {
+    vagrant_config: <<-VC
+      config.vm.provider "vmware_fusion" do |v|
+        v.vmx["memsize"] = "1024"
+        v.vmx["numvcpus"] = "2"
+      end
+
+      config.vm.box = "#{vm_box}"
+      config.vm.network "private_network", ip: "192.168.80.84"
+    VC
+  }
 end
 
 include_recipe 'provision::cluster'

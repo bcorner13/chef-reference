@@ -30,10 +30,11 @@ machine_batch do
   # need action ready because the default is converge, and the
   # machines are really ready, too.
   action :converge
+
   machine 'server-backend' do
     machine_options ChefHelpers.get_machine_options(node, 'server-backend')
     attribute %w(chef chef-server role), 'backend'
-    attribute %w(chef chef-server bootstrap enable), true
+    #attribute %w(chef chef-server bootstrap enable), true
     run_list []
   end
 
@@ -64,6 +65,11 @@ end
 
 machine 'server-backend' do
   chef_config ChefHelpers.use_policyfiles('server-backend')
+
+  machine_options :convergence_options => {  
+                     bootstrap_proxy: "http://internal-dev-squidlb-1691991998.us-east-1.elb.amazonaws.com:3128",
+                     bootstrap_no_proxy: "localhost",
+                     chef_version: "12.6.0" }
   action :converge
   converge true
 end
