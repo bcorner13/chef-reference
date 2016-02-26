@@ -1,11 +1,15 @@
 desc 'Make everything happen'
 task default: %i(server-backend server-frontend analytics supermarket compliance) do
-  sh('chef provision --no-policy --recipe cluster -c .chef/config.rb')
+  sh('chef provision -D  --no-policy --recipe cluster -c .chef/config.rb')
+end
+
+task ec2: %i(server-backend server-frontend analytics supermarket compliance) do
+  sh('chef provision -D  --no-policy --recipe ec2 -c .chef/config.rb')
 end
 
 desc 'Provision development cluster'
 task dev: %i(server-backend server-frontend analytics supermarket compliance) do
-  sh('chef provision --no-policy --recipe dev -c .chef/config.rb')
+  sh('chef provision -D --no-policy --recipe dev -c .chef/config.rb')
 end
 
 %w(server-backend server-frontend analytics supermarket compliance).each do |role|
@@ -22,5 +26,5 @@ task update: %i(server-backend server-frontend analytics supermarket compliance)
 
 desc 'Cleanup'
 task :cleanup do
-  sh('chef provision --no-policy --recipe cleanup -c .chef/config.rb')
+  sh('chef provision -D --no-policy --recipe cleanup -c .chef/config.rb')
 end
