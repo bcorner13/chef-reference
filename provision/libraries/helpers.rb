@@ -44,7 +44,12 @@ module ChefHelpers
     require 'chef/server_api'
     api = Chef::ServerAPI.new
     begin
-      api.get('/policies')
+      resp = api.get('/policies')
+      if resp.empty?
+        return false
+      else
+        return true
+      end
       return true
     rescue Net::HTTPServerException => e
       return false if e.response.code.to_i == 404
