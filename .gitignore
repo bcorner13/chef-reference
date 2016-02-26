@@ -43,3 +43,7 @@ repo/data_bags/secrets/*.pub
 .chef/custom.rb
 .chef/hosted.rb
 actor-map.yaml
+policies/*.lock.json
+*.lock.json
+*.gz
+*.bak
